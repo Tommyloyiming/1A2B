@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>1A2B 猜數字遊戲 (Vue.js)</title>
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+        />
+    </head>
+    <body class="bg-light">
+        <div id="app" class="container text-center mt-5">
+            <h2 class="mb-4">1A2B猜數字遊戲 (Vue.js)</h2>
+
+            <!-- 按鈕列 -->
+            <div class="d-flex justify-content-center mb-3">
+                <button @click="startGame" class="btn btn-outline-primary mx-2">
+                    開始
+                </button>
+                <button
+                    @click="resetGame"
+                    class="btn btn-outline-secondary mx-2"
+                >
+                    放棄重來
+                </button>
+                <button @click="showAnswer" class="btn btn-outline-danger mx-2">
+                    看答案
+                </button>
+            </div>
+
+            <!-- 輸入區 -->
+            <div class="input-group mb-3 w-50 mx-auto">
+                <span class="input-group-text">猜數字</span>
+                <input
+                    type="text"
+                    v-model="guessInput"
+                    @keyup.enter="submitGuess"
+                    class="form-control"
+                    placeholder="GuessNumber"
+                    maxlength="4"
+                />
+                <button @click="submitGuess" class="btn btn-primary">
+                    猜！
+                </button>
+            </div>
+
+            <!-- 歷史紀錄區 -->
+            <ul class="list-group w-50 mx-auto">
+                <li
+                    v-for="(item, index) in historyList"
+                    :key="index"
+                    class="list-group-item d-flex align-items-center justify-content-start"
+                >
+                    <span class="badge bg-danger me-3">{{ item.result }}</span>
+                    <span>{{ item.guess }}</span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- 引入 Vue 3 -->
+        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+        <script src="01-1A2B-vue.js"></script>
+    </body>
+</html>
